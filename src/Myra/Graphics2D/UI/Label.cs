@@ -199,14 +199,14 @@ namespace Myra.Graphics2D.UI
 		{
 			if (Font == null)
 			{
-				return Point.Zero;
+				return Point.Empty;
 			}
 
 			var width = availableSize.X;
 			var height = availableSize.Y;
 			var ellipsisEnabled = _autoEllipsisMethod != AutoEllipsisMethod.None;
 
-			var result = Point.Zero;
+			var result = Point.Empty;
 			if (ellipsisEnabled)
 			{
 				_autoEllipsisText = ApplyAutoEllipsis(width, height);

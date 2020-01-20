@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
-
-#if !XENKO
-using Microsoft.Xna.Framework;
-#else
-using Xenko.Core.Mathematics;
-#endif
 
 namespace Myra.Graphics2D.UI.File
 {
@@ -366,7 +361,7 @@ namespace Myra.Graphics2D.UI.File
 			_gridFiles.Widgets.Clear();
 			_paths.Clear();
 
-			_scrollPane.ScrollPosition = Point.Zero;
+			_scrollPane.ScrollPosition = Point.Empty;
 
 			var path = _textFieldPath.Text;
 			var folders = Directory.EnumerateDirectories(path);

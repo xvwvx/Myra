@@ -1,10 +1,5 @@
 using Myra.Assets;
-
-#if !XENKO
-using Microsoft.Xna.Framework.Graphics;
-#else
-using Texture2D = Xenko.Graphics.Texture;
-#endif
+using Myra.Platform;
 
 namespace Myra.Graphics2D.TextureAtlases
 {
@@ -13,7 +8,7 @@ namespace Myra.Graphics2D.TextureAtlases
 		public TextureRegionAtlas Load(AssetLoaderContext context, string assetName)
 		{
 			var xml = context.Load<string>(assetName);
-			return TextureRegionAtlas.FromXml(xml, name => context.Load<Texture2D>(name));
+			return TextureRegionAtlas.FromXml(xml, name => context.Load<ITexture>(name));
 		}
 	}
 }

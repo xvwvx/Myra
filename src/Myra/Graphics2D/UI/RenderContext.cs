@@ -1,53 +1,14 @@
+using Myra.Platform;
 using System;
-
-#if !XENKO
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-#else
-using Xenko.Core.Mathematics;
-using Xenko.Graphics;
-#endif
+using System.Drawing;
 
 namespace Myra.Graphics2D.UI
 {
 	public class RenderContext
 	{
-		private SpriteBatchBeginParams _spriteBatchBeginParams = new SpriteBatchBeginParams
-		{
-			SpriteSortMode = SpriteSortMode.Deferred,
-#if !XENKO
-			RasterizerState = DefaultAssets.UIRasterizerState,
-			BlendState = BlendState.AlphaBlend,
-			SamplerState = SamplerState.PointClamp,
-			DepthStencilState = null
-#else
-			BlendState = BlendStates.AlphaBlend,
-			SamplerState = MyraEnvironment.Game.GraphicsDevice.SamplerStates.PointClamp,
-			DepthStencilState = DepthStencilStates.Default
-#endif
-		};
-
-		public SpriteBatch Batch { get; set; }
+		public IBackend Batch { get; set; }
 		public Rectangle View { get; set; }
 		public float Opacity { get; set; }
-
-		internal SpriteBatchBeginParams SpriteBatchBeginParams
-		{
-			get
-			{
-				return _spriteBatchBeginParams;
-			}
-
-			set
-			{
-				if (value == null)
-				{
-					throw new ArgumentNullException("value");
-				}
-
-				_spriteBatchBeginParams = value;
-			}
-		}
 
 #if XENKO
 		internal RenderContext()
@@ -56,7 +17,7 @@ namespace Myra.Graphics2D.UI
 			rs.SetDefault();
 			rs.ScissorTestEnable = true;
 
-			_spriteBatchBeginParams.RasterizerState = rs;
+			_IBackendBeginParams.RasterizerState = rs;
 		}
 #endif
 
@@ -97,7 +58,7 @@ namespace Myra.Graphics2D.UI
 		/// <summary>
 		/// Draws a filled rectangle taking into account the context transformations
 		/// </summary>
-		/// <param name="spriteBatch">The destination drawing surface</param>
+		/// <param name="IBackend">The destination drawing surface</param>
 		/// <param name="rectangle">The rectangle to draw</param>
 		/// <param name="color">The color to draw the rectangle in</param>
 		public void FillRectangle(Rectangle rectangle, Color color)
@@ -108,28 +69,28 @@ namespace Myra.Graphics2D.UI
 		internal void Begin()
 		{
 #if MONOGAME
-			Batch.Begin(SpriteBatchBeginParams.SpriteSortMode,
-				SpriteBatchBeginParams.BlendState,
-				SpriteBatchBeginParams.SamplerState,
-				SpriteBatchBeginParams.DepthStencilState,
-				SpriteBatchBeginParams.RasterizerState,
-				SpriteBatchBeginParams.Effect,
-				SpriteBatchBeginParams.TransformMatrix);
+			Batch.Begin(IBackendBeginParams.SpriteSortMode,
+				IBackendBeginParams.BlendState,
+				IBackendBeginParams.SamplerState,
+				IBackendBeginParams.DepthStencilState,
+				IBackendBeginParams.RasterizerState,
+				IBackendBeginParams.Effect,
+				IBackendBeginParams.TransformMatrix);
 #elif FNA
-			Batch.Begin(SpriteBatchBeginParams.SpriteSortMode,
-				SpriteBatchBeginParams.BlendState,
-				SpriteBatchBeginParams.SamplerState,
-				SpriteBatchBeginParams.DepthStencilState,
-				SpriteBatchBeginParams.RasterizerState,
-				SpriteBatchBeginParams.Effect,
-				SpriteBatchBeginParams.TransformMatrix != null ? SpriteBatchBeginParams.TransformMatrix.Value : Matrix.Identity);
+			Batch.Begin(IBackendBeginParams.SpriteSortMode,
+				IBackendBeginParams.BlendState,
+				IBackendBeginParams.SamplerState,
+				IBackendBeginParams.DepthStencilState,
+				IBackendBeginParams.RasterizerState,
+				IBackendBeginParams.Effect,
+				IBackendBeginParams.TransformMatrix != null ? IBackendBeginParams.TransformMatrix.Value : Matrix.Identity);
 #elif XENKO
 			Batch.Begin(MyraEnvironment.Game.GraphicsContext,
-				SpriteBatchBeginParams.SpriteSortMode,
-				SpriteBatchBeginParams.BlendState,
-				SpriteBatchBeginParams.SamplerState,
-				SpriteBatchBeginParams.DepthStencilState,
-				SpriteBatchBeginParams.RasterizerState);
+				IBackendBeginParams.SpriteSortMode,
+				IBackendBeginParams.BlendState,
+				IBackendBeginParams.SamplerState,
+				IBackendBeginParams.DepthStencilState,
+				IBackendBeginParams.RasterizerState);
 #endif
 		}
 

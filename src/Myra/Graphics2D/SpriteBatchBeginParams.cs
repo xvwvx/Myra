@@ -11,7 +11,7 @@ using RasterizerState = Xenko.Graphics.RasterizerStateDescription;
 
 namespace Myra.Graphics2D
 {
-	public class SpriteBatchBeginParams
+	public class IBackendBeginParams
 	{
 		private Matrix? _transformMatrix;
 

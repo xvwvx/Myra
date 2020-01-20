@@ -1,33 +1,31 @@
-﻿using System.IO;
-
-#if !XENKO
+﻿#if !XENKO
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 #else
 using Xenko.Core.Mathematics;
 using Xenko.Graphics;
-using ITexture = Xenko.Graphics.Texture;
+using Texture2D = Xenko.Graphics.Texture;
 #endif
 
 namespace Myra.Utility
 {
 	internal static class CrossEngineStuff
 	{
-		public static ITexture CreateITexture(int width, int height)
+		public static Texture2D CreateTexture2D(GraphicsDevice device, int width, int height)
 		{
 #if !XENKO
-			return new ITexture(MyraEnvironment.GraphicsDevice, width, height, false, SurfaceFormat.Color);
+			return new Texture2D(device, width, height, false, SurfaceFormat.Color);
 #else
-			return ITexture.New2D(MyraEnvironment.GraphicsDevice, width, height, false, PixelFormat.R8G8B8A8_UNorm, TextureFlags.ShaderResource);
+			return Texture2D.New2D(device, width, height, false, PixelFormat.R8G8B8A8_UNorm, TextureFlags.ShaderResource);
 #endif
 		}
 
-		public static void SetData<T>(ITexture texture, T[] data) where T: struct
+		public static void SetData<T>(Game game, Texture2D texture, T[] data) where T: struct
 		{
 #if !XENKO
 			texture.SetData(data);
 #else
-			var commandList = MyraEnvironment.Game.GraphicsContext.CommandList;
+			var commandList = game.GraphicsContext.CommandList;
 
 			texture.SetData(commandList, data);
 #endif

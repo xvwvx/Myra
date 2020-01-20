@@ -1,20 +1,17 @@
-﻿using Myra.Utility;
-
-#if !XENKO
-using Microsoft.Xna.Framework.Graphics;
-#else
-using Texture2D = Xenko.Graphics.Texture;
-#endif
+﻿using Myra.Platform;
+using Myra.Utility;
 
 namespace Myra.Assets
 {
-	internal class Texture2DLoader : IAssetLoader<Texture2D>
+	internal class ITextureLoader : IAssetLoader<ITexture>
 	{
-		public Texture2D Load(AssetLoaderContext context, string assetName)
+		public ITexture Load(AssetLoaderContext context, string assetName)
 		{
 			using (var stream = context.Open(assetName))
 			{
-				return Texture2DExtensions.FromStream(stream, true);
+				var data = ITextureExtensions.FromStream(stream, true);
+
+				return MyraEnvironment.Backend.CreateTexture(data.Width, data.Height, data.Data);
 			}
 		}
 	}

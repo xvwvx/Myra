@@ -1,13 +1,9 @@
-﻿#if !XENKO
-using Microsoft.Xna.Framework;
-#else
-using Xenko.Core.Mathematics;
-#endif
+﻿using System.Drawing;
 
 namespace Myra.Graphics2D
 {
 	public interface IImage: IBrush
 	{
-		Point Size { get; }
+		Size Size { get; }
 	}
 }

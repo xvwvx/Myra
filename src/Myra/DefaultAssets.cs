@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 using SpriteFontPlus;
 using Xenko.Core.Mathematics;
 using Xenko.Graphics;
-using Texture2D = Xenko.Graphics.Texture;
+using ITexture = Xenko.Graphics.Texture;
 using RasterizerState = Xenko.Graphics.RasterizerStateDescription;
 #endif
 
@@ -24,9 +24,9 @@ namespace Myra
 		private static SpriteFont _fontSmall;
 		private static TextureRegionAtlas _uiTextureRegionAtlas;
 		private static Stylesheet _uiStylesheet;
-		private static Texture2D _uiBitmap;
+		private static ITexture _uiBitmap;
 		private static RasterizerState _uiRasterizerState;
-		private static Texture2D _white;
+		private static ITexture _white;
 		private static TextureRegion _whiteRegion;
 
 		private static Assembly Assembly
@@ -37,13 +37,13 @@ namespace Myra
 			}
 		}
 
-		public static Texture2D White
+		public static ITexture White
 		{
 			get
 			{
 				if (_white == null)
 				{
-					_white = CrossEngineStuff.CreateTexture2D(1, 1);
+					_white = CrossEngineStuff.CreateITexture(1, 1);
 					CrossEngineStuff.SetData(_white, new[] {Color.White});
 				}
 
@@ -120,7 +120,7 @@ namespace Myra
 			}
 		}
 
-		public static Texture2D UIBitmap
+		public static ITexture UIBitmap
 		{
 			get
 			{
@@ -129,7 +129,7 @@ namespace Myra
 					return _uiBitmap;
 				}
 
-				_uiBitmap = _assetManager.Load<Texture2D>("default_ui_skin_atlas.png");
+				_uiBitmap = _assetManager.Load<ITexture>("default_ui_skin_atlas.png");
 				return _uiBitmap;
 			}
 		}

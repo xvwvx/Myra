@@ -5,14 +5,7 @@ using Myra.Utility;
 using System.Xml.Serialization;
 using Myra.MML;
 using Myra.Graphics2D.UI.Properties;
-
-#if !XENKO
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-#else
-using Xenko.Core.Mathematics;
-using Xenko.Input;
-#endif
+using System.Drawing;
 
 namespace Myra.Graphics2D.UI
 {
@@ -37,8 +30,8 @@ namespace Myra.Graphics2D.UI
 		private bool _active = false;
 		private bool _isPlaced = false;
 
-		private Point _lastMeasureSize;
-		private Point _lastMeasureAvailableSize;
+		private Size _lastMeasureSize;
+		private Size _lastMeasureAvailableSize;
 		private Point _lastLocationHint;
 
 		private Rectangle _containerBounds;
@@ -912,7 +905,7 @@ namespace Myra.Graphics2D.UI
 
 		protected virtual Point InternalMeasure(Point availableSize)
 		{
-			return Point.Zero;
+			return Point.Empty;
 		}
 
 		public virtual void Arrange()

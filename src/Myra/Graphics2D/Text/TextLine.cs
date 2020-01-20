@@ -1,14 +1,6 @@
-﻿using Myra.Utility;
-using System;
+﻿using Myra.Platform;
 using System.Collections.Generic;
-
-#if !XENKO
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-#else
-using Xenko.Core.Mathematics;
-using Xenko.Graphics;
-#endif
+using System.Drawing;
 
 namespace Myra.Graphics2D.Text
 {
@@ -16,7 +8,7 @@ namespace Myra.Graphics2D.Text
 	{
 		public int Count { get; internal set; }
 
-		public Point Size;
+		public Size Size;
 
 		public int LineIndex
 		{
@@ -64,9 +56,9 @@ namespace Myra.Graphics2D.Text
 			{
 				var chunk = Chunks[i];
 
-				if (x >= chunk.Size.X)
+				if (x >= chunk.Size.Width)
 				{
-					x -= chunk.Size.X;
+					x -= chunk.Size.Height;
 				}
 				else
 				{
@@ -85,7 +77,7 @@ namespace Myra.Graphics2D.Text
 			return Chunks[Chunks.Count - 1].GetGlyphIndexByX(startX);
 		}
 
-		public virtual Color Draw(SpriteBatch batch, Point pos, Color color, bool useChunkColor, float opacity = 1.0f)
+		public virtual Color Draw(IBackend batch, Point pos, Color color, bool useChunkColor, float opacity = 1.0f)
 		{
 			foreach (var chunk in Chunks)
 			{
@@ -95,7 +87,7 @@ namespace Myra.Graphics2D.Text
 				}
 
 				chunk.Draw(batch, pos, color, opacity);
-				pos.X += chunk.Size.X;
+				pos.X += chunk.Size.Width;
 			}
 
 			return color;

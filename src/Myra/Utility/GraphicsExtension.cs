@@ -4,7 +4,7 @@
 using Microsoft.Xna.Framework;
 #else
 using Xenko.Core.Mathematics;
-using Texture2D = Xenko.Graphics.Texture;
+using ITexture = Xenko.Graphics.Texture;
 #endif
 
 namespace Myra.Utility

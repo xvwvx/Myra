@@ -70,7 +70,7 @@ namespace Myra.Assets
 			SetAssetLoader(new SoundEffectLoader());
 #endif
 			SetAssetLoader(new StringLoader());
-			SetAssetLoader(new Texture2DLoader());
+			SetAssetLoader(new ITextureLoader());
 			SetAssetLoader(new SpriteFontLoader());
 		}
 

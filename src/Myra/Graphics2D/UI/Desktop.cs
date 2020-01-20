@@ -241,18 +241,18 @@ namespace Myra.Graphics2D.UI
 		}
 
 		/// <summary>
-		/// Parameters passed to SpriteBatch.Begin
+		/// Parameters passed to IBackend.Begin
 		/// </summary>
-		public static SpriteBatchBeginParams SpriteBatchBeginParams
+		public static IBackendBeginParams IBackendBeginParams
 		{
 			get
 			{
-				return RenderContext.SpriteBatchBeginParams;
+				return RenderContext.IBackendBeginParams;
 			}
 
 			set
 			{
-				RenderContext.SpriteBatchBeginParams = value;
+				RenderContext.IBackendBeginParams = value;
 			}
 		}
 
@@ -671,10 +671,10 @@ namespace Myra.Graphics2D.UI
 		{
 			if (_renderContext == null)
 			{
-				var spriteBatch = new SpriteBatch(MyraEnvironment.GraphicsDevice);
+				var IBackend = new IBackend(MyraEnvironment.GraphicsDevice);
 				_renderContext = new RenderContext
 				{
-					Batch = spriteBatch
+					Batch = IBackend
 				};
 			}
 		}
@@ -927,12 +927,12 @@ namespace Myra.Graphics2D.UI
 			var mouseInfo = MouseInfoGetter();
 			var mousePosition = mouseInfo.Position;
 
-			if (SpriteBatchBeginParams.TransformMatrix != null)
+			if (IBackendBeginParams.TransformMatrix != null)
 			{
 				// Apply transform
-				var t = Vector2.Transform(
-					new Vector2(mousePosition.X, mousePosition.Y),
-					SpriteBatchBeginParams.InverseTransform);
+				var t = PointF.Transform(
+					new PointF(mousePosition.X, mousePosition.Y),
+					IBackendBeginParams.InverseTransform);
 
 				mousePosition = new Point((int)t.X, (int)t.Y);
 			}

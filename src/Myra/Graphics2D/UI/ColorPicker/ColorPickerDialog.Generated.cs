@@ -5,13 +5,6 @@ using Myra.Graphics2D.TextureAtlases;
 using Myra.Graphics2D.UI;
 using Myra.Graphics2D.Brushes;
 
-#if !XENKO
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-#else
-using Xenko.Core.Mathematics;
-#endif
-
 namespace Myra.Graphics2D.UI.ColorPicker
 {
 	partial class ColorPickerDialog: Dialog

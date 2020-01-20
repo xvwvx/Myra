@@ -28,7 +28,7 @@ namespace Myra.Graphics2D.UI
 
 		protected override Point InternalMeasure(Point availableSize)
 		{
-			Point result = Point.Zero;
+			Point result = Point.Empty;
 
 			foreach (var control in _widgets)
 			{

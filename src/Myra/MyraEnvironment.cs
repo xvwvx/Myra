@@ -1,56 +1,48 @@
-﻿using System;
+﻿using Myra.Platform;
+using System;
 using System.Reflection;
-
-#if !XENKO
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-#else
-using Xenko.Core.Mathematics;
-using Xenko.Engine;
-using Xenko.Graphics;
-#endif
 
 namespace Myra
 {
 
 	public static class MyraEnvironment
 	{
-		private static Game _game;
+		private static IBackend _backend;
 
 		public static event EventHandler GameDisposed;
 
-		public static Game Game
+		public static IBackend Backend
 		{
 			get
 			{
-				if (_game == null)
+				if (_backend == null)
 				{
 					throw new Exception("MyraEnvironment.Game is null. Please, set it to the Game instance before using Myra.");
 				}
 
-				return _game;
+				return _backend;
 			}
 
 			set
 			{
-				if (_game == value)
+				if (_backend == value)
 				{
 					return;
 				}
 
 #if !XENKO
-				if (_game != null)
+				if (_backend != null)
 				{
-					_game.Disposed -= GameOnDisposed;
+					_backend.Disposed -= GameOnDisposed;
 				}
 #endif
 
-				_game = value;
+				_backend = value;
 
 #if !XENKO
-				if (_game != null)
+				if (_backend != null)
 				{
-					_game.Disposed += GameOnDisposed;
+					_backend.Disposed += GameOnDisposed;
 				}
 #endif
 			}
@@ -70,14 +62,6 @@ namespace Myra
 			if (ev != null)
 			{
 				ev(null, EventArgs.Empty);
-			}
-		}
-
-		public static GraphicsDevice GraphicsDevice
-		{
-			get
-			{
-				return Game.GraphicsDevice;
 			}
 		}
 

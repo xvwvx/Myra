@@ -1,24 +1,17 @@
 ﻿using System;
+using System.Drawing;
 using Myra.Assets;
-
-#if !XENKO
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-#else
-using Xenko.Core.Mathematics;
-using Xenko.Graphics;
-using Texture2D = Xenko.Graphics.Texture;
-#endif
+using Myra.Platform;
 
 namespace Myra.Graphics2D.TextureAtlases
 {
 	[AssetLoader(typeof(TextureRegionLoader))]
 	public class TextureRegion: IImage
 	{
-		private readonly Texture2D _texture;
+		private readonly ITexture _texture;
 		private readonly Rectangle _bounds;
 
-		public Texture2D Texture
+		public ITexture Texture
 		{
 			get { return _texture; }
 		}
@@ -28,11 +21,11 @@ namespace Myra.Graphics2D.TextureAtlases
 			get { return _bounds; }
 		}
 
-		public Point Size
+		public Size Size
 		{
 			get
 			{
-				return new Point(Bounds.Width, Bounds.Height);
+				return Bounds.Size;
 			}
 		}
 
@@ -40,11 +33,11 @@ namespace Myra.Graphics2D.TextureAtlases
 		/// Covers the whole texture
 		/// </summary>
 		/// <param name="texture"></param>
-		public TextureRegion(Texture2D texture) : this(texture, new Rectangle(0, 0, texture.Width, texture.Height))
+		public TextureRegion(ITexture texture) : this(texture, new Rectangle(0, 0, texture.Width, texture.Height))
 		{
 		}
 
-		public TextureRegion(Texture2D texture, Rectangle bounds)
+		public TextureRegion(ITexture texture, Rectangle bounds)
 		{
 			if (texture == null)
 			{
@@ -67,7 +60,7 @@ namespace Myra.Graphics2D.TextureAtlases
 			_bounds = bounds;
 		}
 
-		public virtual void Draw(SpriteBatch batch, Rectangle dest, Color color)
+		public virtual void Draw(IBackend batch, Rectangle dest, Color color)
 		{
 #if !XENKO
 			batch.Draw(Texture,
@@ -80,7 +73,7 @@ namespace Myra.Graphics2D.TextureAtlases
 				new RectangleF(Bounds.X, Bounds.Y, Bounds.Width, Bounds.Height),
 				color,
 				0.0f,
-				Vector2.Zero);
+				PointF.Empty);
 #endif
 		}
 	}

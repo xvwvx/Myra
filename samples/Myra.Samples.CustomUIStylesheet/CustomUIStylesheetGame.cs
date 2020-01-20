@@ -29,7 +29,7 @@ namespace Myra.Samples.CustomUIStylesheet
 		{
 			base.LoadContent();
 
-			MyraEnvironment.Game = this;
+			MyraEnvironment.Backend = this;
 
 			// Create asset manager
 			var assetManager = new AssetManager(new ResourceAssetResolver(typeof(CustomUIStylesheetGame).Assembly, "Resources"));

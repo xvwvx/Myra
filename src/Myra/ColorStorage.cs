@@ -1,12 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.Reflection;
-
-#if !XENKO
-using Microsoft.Xna.Framework;
-#else
-using Xenko.Core.Mathematics;
-#endif
 
 namespace Myra
 {
@@ -96,7 +91,7 @@ namespace Myra
 						}
 					}
 
-					return new Color(r, g, b, a);
+					return Color.FromArgb(a, r, g, b);
 				}
 			}
 			else

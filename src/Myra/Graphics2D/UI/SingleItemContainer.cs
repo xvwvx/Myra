@@ -91,7 +91,7 @@ namespace Myra.Graphics2D.UI
 
 		protected override Point InternalMeasure(Point availableSize)
 		{
-			var result = Point.Zero;
+			var result = Point.Empty;
 
 			if (InternalChild != null)
 			{

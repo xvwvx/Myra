@@ -3,14 +3,8 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using Myra.MML;
 using Myra.Assets;
-
-#if !XENKO
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-#else
-using Xenko.Core.Mathematics;
-using Texture2D = Xenko.Graphics.Texture;
-#endif
+using Myra.Platform;
+using System.Drawing;
 
 namespace Myra.Graphics2D.TextureAtlases
 {
@@ -91,7 +85,7 @@ namespace Myra.Graphics2D.TextureAtlases
 			return doc.ToString();
 		}
 
-		public static TextureRegionAtlas FromXml(string xml, Func<string, Texture2D> textureGetter)
+		public static TextureRegionAtlas FromXml(string xml, Func<string, ITexture> textureGetter)
 		{
 			var doc = XDocument.Parse(xml);
 			var root = doc.Root;

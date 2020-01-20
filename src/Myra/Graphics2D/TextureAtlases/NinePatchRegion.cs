@@ -1,11 +1,5 @@
-﻿#if !XENKO
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-#else
-using Xenko.Core.Mathematics;
-using Xenko.Graphics;
-using Texture2D = Xenko.Graphics.Texture;
-#endif
+﻿using Myra.Platform;
+using System.Drawing;
 
 namespace Myra.Graphics2D.TextureAtlases
 {
@@ -28,7 +22,7 @@ namespace Myra.Graphics2D.TextureAtlases
 			get { return _info; }
 		}
 
-		public NinePatchRegion(Texture2D texture, Rectangle bounds, PaddingInfo info) : base(texture, bounds)
+		public NinePatchRegion(ITexture texture, Rectangle bounds, PaddingInfo info) : base(texture, bounds)
 		{
 			_info = info;
 
@@ -129,7 +123,7 @@ namespace Myra.Graphics2D.TextureAtlases
 			}
 		}
 
-		public override void Draw(SpriteBatch batch, Rectangle dest, Color color)
+		public override void Draw(IBackend batch, Rectangle dest, Color color)
 		{
 			var y = dest.Y;
 

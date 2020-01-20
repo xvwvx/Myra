@@ -86,9 +86,9 @@ namespace Myra.Graphics2D.UI
 
 		protected override Point InternalMeasure(Point availableSize)
 		{
-			var result = _image != null ? _image.Size : Point.Zero;
+			var result = _image != null ? _image.Size : Point.Empty;
 
-			var overSize = _overImage != null ? _overImage.Size : Point.Zero;
+			var overSize = _overImage != null ? _overImage.Size : Point.Empty;
 			if (overSize.X > result.X)
 			{
 				result.X = overSize.X;
@@ -99,7 +99,7 @@ namespace Myra.Graphics2D.UI
 				result.Y = overSize.Y;
 			}
 
-			var pressedSize = _pressedImage != null ? _pressedImage.Size : Point.Zero;
+			var pressedSize = _pressedImage != null ? _pressedImage.Size : Point.Empty;
 			if (pressedSize.X > result.X)
 			{
 				result.X = pressedSize.X;

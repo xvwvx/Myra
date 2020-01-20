@@ -31,7 +31,7 @@ namespace Myra.Graphics2D.UI
 			{
 				if (InternalChild == null)
 				{
-					return Point.Zero;
+					return Point.Empty;
 				}
 
 				var bounds = ActualBounds;
@@ -49,7 +49,7 @@ namespace Myra.Graphics2D.UI
 			{
 				if (InternalChild == null)
 				{
-					return Point.Zero;
+					return Point.Empty;
 				}
 
 				return new Point(-InternalChild.Left, -InternalChild.Top);
@@ -94,7 +94,7 @@ namespace Myra.Graphics2D.UI
 				var sp = ScrollPosition;
 				var m = ScrollMaximum;
 
-				var result = Point.Zero;
+				var result = Point.Empty;
 				if (m.X > 0)
 				{
 					result.X = sp.X * _thumbMaximumX / m.X;
@@ -488,7 +488,7 @@ namespace Myra.Graphics2D.UI
 		{
 			if (InternalChild == null)
 			{
-				return Point.Zero;
+				return Point.Empty;
 			}
 
 			var measureSize = InternalChild.Measure(availableSize);
@@ -639,7 +639,7 @@ namespace Myra.Graphics2D.UI
 
 		public void ResetScroll()
 		{
-			ScrollPosition = Point.Zero;
+			ScrollPosition = Point.Empty;
 		}
 
 		private void DesktopTouchMoved(object sender, EventArgs args)

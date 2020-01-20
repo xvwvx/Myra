@@ -32,7 +32,7 @@ namespace Myra.Graphics2D.UI
 
 		private Point? _lastCursorPosition;
 		private int _cursorIndex;
-		private Point _internalScrolling = Point.Zero;
+		private Point _internalScrolling = Point.Empty;
 		private bool _suppressRedoStackReset = false;
 		private string _text;
 		private bool _passwordField;
@@ -915,9 +915,9 @@ namespace Myra.Graphics2D.UI
 				}
 			}
 
-			if (maximum == Point.Zero)
+			if (maximum == Point.Empty)
 			{
-				_internalScrolling = Point.Zero;
+				_internalScrolling = Point.Empty;
 				_lastCursorPosition = p;
 				return;
 			}
@@ -1272,13 +1272,13 @@ namespace Myra.Graphics2D.UI
 		{
 			if (Font == null)
 			{
-				return Point.Zero;
+				return Point.Empty;
 			}
 
 			var width = availableSize.X;
 			width -= CursorWidth;
 
-			var result = Point.Zero;
+			var result = Point.Empty;
 			if (Font != null)
 			{
 				result = _formattedText.Measure(_wrap ? width : default(int?));

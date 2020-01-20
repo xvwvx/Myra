@@ -498,7 +498,7 @@ namespace Myra.Graphics2D.UI
 					{
 						var gridPosition = GetActualGridPosition(widget);
 
-						var measuredSize = Point.Zero;
+						var measuredSize = Point.Empty;
 						if (rowProportion.Type != ProportionType.Pixels ||
 							colProportion.Type != ProportionType.Pixels)
 						{
@@ -528,7 +528,7 @@ namespace Myra.Graphics2D.UI
 				}
 			}
 
-			var result = Point.Zero;
+			var result = Point.Empty;
 
 			for (i = 0; i < _measureColWidths.Count; ++i)
 			{
@@ -680,11 +680,11 @@ namespace Myra.Graphics2D.UI
 				}
 			}
 
-			_actualSize = Point.Zero;
+			_actualSize = Point.Empty;
 			_gridLinesX.Clear();
 			_cellLocationsX.Clear();
 
-			var p = Point.Zero;
+			var p = Point.Empty;
 
 			for (var i = 0; i < _colWidths.Count; ++i)
 			{
@@ -733,7 +733,7 @@ namespace Myra.Graphics2D.UI
 			var col = gridPosition.X;
 			var row = gridPosition.Y;
 
-			var cellSize = Point.Zero;
+			var cellSize = Point.Empty;
 
 			for (var i = col; i < col + control.GridColumnSpan; ++i)
 			{

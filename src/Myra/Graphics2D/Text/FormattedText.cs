@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 using Myra.Utility;
-
-#if !XENKO
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-#else
-using Xenko.Core.Mathematics;
-using Xenko.Graphics;
-#endif
 
 namespace Myra.Graphics2D.Text
 {
@@ -23,7 +16,7 @@ namespace Myra.Graphics2D.Text
 		private int? _width;
 		private TextLine[] _strings;
 		private bool _calculateGlyphs, _supportsCommands;
-		private Point _size;
+		private Size _size;
 		private bool _dirty = true;
 		private StringBuilder _stringBuilder = new StringBuilder();
 
@@ -109,7 +102,7 @@ namespace Myra.Graphics2D.Text
 			}
 		}
 
-		public Point Size
+		public Size Size
 		{
 			get
 			{
@@ -209,7 +202,7 @@ namespace Myra.Graphics2D.Text
 
 				_stringBuilder.Append(c);
 
-				var sz = Point.Zero;
+				var sz = Size.Zero;
 
 				if (c != '\n')
 				{
@@ -259,7 +252,7 @@ namespace Myra.Graphics2D.Text
 
 		public Point Measure(int? width)
 		{
-			var result = Point.Zero;
+			var result = Point.Empty;
 			if (_text != null)
 			{
 				var i = 0;
@@ -372,7 +365,7 @@ namespace Myra.Graphics2D.Text
 			_strings = lines.ToArray();
 
 			// Calculate size
-			_size = Point.Zero;
+			_size = Point.Empty;
 			for (i = 0; i < _strings.Length; ++i)
 			{
 				line = _strings[i];
@@ -471,7 +464,7 @@ namespace Myra.Graphics2D.Text
 			return null;
 		}
 
-		public void Draw(SpriteBatch batch, Point position, Rectangle clip, Color textColor, bool useChunkColor, float opacity = 1.0f)
+		public void Draw(IBackend batch, Point position, Rectangle clip, Color textColor, bool useChunkColor, float opacity = 1.0f)
 		{
 			var strings = Strings;
 

@@ -1,10 +1,5 @@
-﻿#if !XENKO
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-#else
-using Xenko.Core.Mathematics;
-using Xenko.Graphics;
-#endif
+﻿using Myra.Platform;
+using System.Drawing;
 
 namespace Myra.Graphics2D.Brushes
 {
@@ -30,13 +25,13 @@ namespace Myra.Graphics2D.Brushes
 			Color = color;
 		}
 
-		public void Draw(SpriteBatch batch, Rectangle dest, Color color)
+		public void Draw(IBackend backend, Rectangle dest, Color color)
 		{
 			var white = DefaultAssets.WhiteRegion;
 
 			if (color == Color.White)
 			{
-				white.Draw(batch, dest, Color);
+				white.Draw(backend, dest, Color);
 			}
 			else
 			{
@@ -45,7 +40,7 @@ namespace Myra.Graphics2D.Brushes
 					(int)(Color.B * color.B / 255.0f),
 					(int)(Color.A * color.A / 255.0f));
 
-				white.Draw(batch, dest, c);
+				white.Draw(backend, dest, c);
 			}
 		}
 	}
