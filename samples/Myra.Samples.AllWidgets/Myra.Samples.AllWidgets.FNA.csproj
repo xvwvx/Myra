@@ -5,7 +5,7 @@
     <StartupObject />
     <AssemblyName>Myra.Samples.AllWidgets</AssemblyName>
     <RootNamespace>Myra.Samples.AllWidgets</RootNamespace>
-    <TargetFramework>net45</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <OutputPath>bin\FNA\$(Configuration)</OutputPath>
     <DefineConstants>$(DefineConstants);FNA</DefineConstants>
   </PropertyGroup>

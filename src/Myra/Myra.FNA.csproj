@@ -9,7 +9,7 @@
     <RootNamespace>Myra</RootNamespace>
     <Version>1.0.0.0</Version>
     <DefineConstants>$(DefineConstants);FNA</DefineConstants>
-    <TargetFramework>net45</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <PackageId>Myra.FNA</PackageId>
     <OutputPath>bin\FNA\$(Configuration)</OutputPath>
   </PropertyGroup>
